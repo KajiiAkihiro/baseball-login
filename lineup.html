@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>野球スコアボード - スターティングメンバー</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #1a3a1a;
+      background-image: radial-gradient(ellipse at center, #2d5a27 0%, #1a3a1a 60%, #0d1f0d 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      padding: 20px 16px;
+    }
+
+    .stadium-light {
+      position: fixed;
+      width: 300px; height: 600px;
+      background: radial-gradient(ellipse at top, rgba(255,250,200,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .stadium-light.left  { top: -100px; left: 5%;  transform: rotate(-20deg); }
+    .stadium-light.right { top: -100px; right: 5%; transform: rotate(20deg); }
+
+    /* カード */
+    .card {
+      background: rgba(15, 30, 15, 0.88);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 16px 24px 18px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 0 60px rgba(0,0,0,0.6);
+    }
+
+    /* ヘッダー */
+    .header {
+      text-align: center;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #c8a020, #a07810);
+      color: #1a1a00;
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 5px;
+    }
+    .header h1 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+    .header p {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 2px;
+      letter-spacing: 0.08em;
+    }
+
+    /* タブ */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 7px 0;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.45);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #5a9e20, #3d7a10);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(90,158,32,0.4);
+    }
+    .tab-btn:not(.active):hover {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* パネル */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* 打順リスト */
+    .lineup {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .lineup-row {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 6px 12px;
+      transition: background 0.2s;
+    }
+    .lineup-row:hover { background: rgba(255,255,255,0.08); }
+
+    .order {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    /* 自チーム：緑 / 相手：赤 */
+    .home .order  { background: linear-gradient(135deg, #5a9e20, #3d7a10); box-shadow: 0 2px 6px rgba(90,158,32,0.4); }
+    .away .order  { background: linear-gradient(135deg, #9e2020, #7a1010); box-shadow: 0 2px 6px rgba(158,32,32,0.4); }
+
+    .position {
+      width: 74px;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+      margin-left: 10px;
+    }
+    .home .position { color: rgba(180,220,80,0.9); }
+    .away .position { color: rgba(220,120,80,0.9); }
+
+    .sep {
+      color: rgba(255,255,255,0.15);
+      font-size: 0.7rem;
+      margin: 0 4px;
+    }
+
+    .player-name {
+      flex: 1;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    /* フッター */
+    .footer {
+      margin-top: 12px;
+      text-align: center;
+    }
+    .btn-back {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.8rem;
+      padding: 7px 22px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-back:hover {
+      border-color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stadium-light left"></div>
+  <div class="stadium-light right"></div>
+
+  <div class="card">
+    <div class="header">
+      <div class="badge">⚾ Starting Lineup</div>
+      <h1>スターティングメンバー</h1>
+      <p>BASEBALL SCORE TRACKER</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('home', this)">🟢 我々チーム</button>
+      <button class="tab-btn"        onclick="switchTab('away', this)">🔴 対戦相手</button>
+    </div>
+
+    <!-- 自チーム -->
+    <div id="panel-home" class="panel active home">
+      <div class="lineup">
+        <div class="lineup-row"><div class="order">1</div><div class="position">センター</div><span class="sep">|</span><div class="player-name">田中　翔</div></div>
+        <div class="lineup-row"><div class="order">2</div><div class="position">ショート</div><span class="sep">|</span><div class="player-name">鈴木　一郎</div></div>
+        <div class="lineup-row"><div class="order">3</div><div class="position">ライト</div><span class="sep">|</span><div class="player-name">佐藤　大輝</div></div>
+        <div class="lineup-row"><div class="order">4</div><div class="position">ファースト</div><span class="sep">|</span><div class="player-name">山田　太郎</div></div>
+        <div class="lineup-row"><div class="order">5</div><div class="position">レフト</div><span class="sep">|</span><div class="player-name">伊藤　健二</div></div>
+        <div class="lineup-row"><div class="order">6</div><div class="position">サード</div><span class="sep">|</span><div class="player-name">渡辺　蓮</div></div>
+        <div class="lineup-row"><div class="order">7</div><div class="position">セカンド</div><span class="sep">|</span><div class="player-name">中村　悠斗</div></div>
+        <div class="lineup-row"><div class="order">8</div><div class="position">キャッチャー</div><span class="sep">|</span><div class="player-name">小林　剛</div></div>
+        <div class="lineup-row"><div class="order">9</div><div class="position">ピッチャー</div><span class="sep">|</span><div class="player-name">松本　航</div></div>
+      </div>
+    </div>
+
+    <!-- 対戦相手 -->
+    <div id="panel-away" class="panel away">
+      <div class="lineup">
+        <div class="lineup-row"><div class="order">1</div><div class="position">センター</div><span class="sep">|</span><div class="player-name">高橋　優斗</div></div>
+        <div class="lineup-row"><div class="order">2</div><div class="position">セカンド</div><span class="sep">|</span><div class="player-name">加藤　誠</div></div>
+        <div class="lineup-row"><div class="order">3</div><div class="position">ファースト</div><span class="sep">|</span><div class="player-name">西村　大和</div></div>
+        <div class="lineup-row"><div class="order">4</div><div class="position">レフト</div><span class="sep">|</span><div class="player-name">木村　龍之介</div></div>
+        <div class="lineup-row"><div class="order">5</div><div class="position">ライト</div><span class="sep">|</span><div class="player-name">林　駿介</div></div>
+        <div class="lineup-row"><div class="order">6</div><div class="position">サード</div><span class="sep">|</span><div class="player-name">清水　隼人</div></div>
+        <div class="lineup-row"><div class="order">7</div><div class="position">ショート</div><span class="sep">|</span><div class="player-name">池田　颯太</div></div>
+        <div class="lineup-row"><div class="order">8</div><div class="position">キャッチャー</div><span class="sep">|</span><div class="player-name">石川　蒼</div></div>
+        <div class="lineup-row"><div class="order">9</div><div class="position">ピッチャー</div><span class="sep">|</span><div class="player-name">橋本　康平</div></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="btn-back" onclick="location.href='index.html'">← ログイン画面へ戻る</button>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(team, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + team).classList.add('active');
+    }
+  </script>
+</body>
+</html>
