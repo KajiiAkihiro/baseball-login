@@ -11,182 +11,160 @@
       min-height: 100vh;
       background: #1a3a1a;
       background-image: radial-gradient(ellipse at center, #2d5a27 0%, #1a3a1a 60%, #0d1f0d 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
       font-family: 'Segoe UI', sans-serif;
-      overflow-x: hidden;
-      padding: 20px 16px;
+      overflow-x: hidden; padding: 20px 16px;
     }
-
-    .stadium-light {
-      position: fixed;
-      width: 300px; height: 600px;
-      background: radial-gradient(ellipse at top, rgba(255,250,200,0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    .stadium-light { position: fixed; width: 300px; height: 600px; pointer-events: none;
+      background: radial-gradient(ellipse at top, rgba(255,250,200,0.05) 0%, transparent 70%); }
     .stadium-light.left  { top: -100px; left: 5%;  transform: rotate(-20deg); }
     .stadium-light.right { top: -100px; right: 5%; transform: rotate(20deg); }
 
-    /* カード */
+    /* ===== カード ===== */
     .card {
-      background: rgba(15, 30, 15, 0.88);
+      background: rgba(15,30,15,0.88);
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px;
-      padding: 16px 24px 18px;
-      width: 100%;
-      max-width: 500px;
+      border-radius: 16px; padding: 16px 24px 18px;
+      width: 100%; max-width: 520px;
       box-shadow: 0 0 60px rgba(0,0,0,0.6);
     }
+    .header { text-align: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .badge { display: inline-block; background: linear-gradient(135deg,#c8a020,#a07810); color: #1a1a00;
+      font-size: .66rem; font-weight: 800; letter-spacing: .15em; padding: 3px 12px; border-radius: 20px; margin-bottom: 5px; }
+    .header h1 { font-size: 1.2rem; font-weight: 800; color: #fff; letter-spacing: .05em; }
+    .header p  { font-size: .72rem; color: rgba(255,255,255,.35); margin-top: 2px; letter-spacing: .08em; }
 
-    /* ヘッダー */
-    .header {
-      text-align: center;
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #c8a020, #a07810);
-      color: #1a1a00;
-      font-size: 0.66rem;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      padding: 3px 12px;
-      border-radius: 20px;
-      margin-bottom: 5px;
-    }
-    .header h1 {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: 0.05em;
-    }
-    .header p {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.35);
-      margin-top: 2px;
-      letter-spacing: 0.08em;
-    }
-
-    /* タブ */
-    .tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
+    /* ===== タブ ===== */
+    .tabs { display: flex; gap: 6px; margin-bottom: 10px; }
     .tab-btn {
-      flex: 1;
-      padding: 7px 0;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.04);
-      color: rgba(255,255,255,0.45);
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      letter-spacing: 0.03em;
+      flex: 1; padding: 7px 0; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.45); font-size: .78rem; font-weight: 700; cursor: pointer; transition: all .2s;
     }
-    .tab-btn.active {
-      background: linear-gradient(135deg, #5a9e20, #3d7a10);
-      border-color: transparent;
-      color: #fff;
-      box-shadow: 0 2px 10px rgba(90,158,32,0.4);
-    }
-    .tab-btn:not(.active):hover {
-      background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.7);
-    }
-
-    /* パネル */
+    .tab-btn.active { background: linear-gradient(135deg,#5a9e20,#3d7a10); border-color: transparent; color: #fff; box-shadow: 0 2px 10px rgba(90,158,32,.4); }
+    .tab-btn:not(.active):hover { background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); }
     .panel { display: none; }
     .panel.active { display: block; }
 
-    /* 打順リスト */
-    .lineup {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
+    /* ===== ラインアップ ===== */
+    .lineup { display: flex; flex-direction: column; gap: 5px; }
     .lineup-row {
-      display: flex;
-      align-items: center;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 8px;
-      padding: 6px 12px;
-      transition: background 0.2s;
+      display: flex; align-items: center;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px; padding: 6px 12px; transition: background .2s;
     }
-    .lineup-row:hover { background: rgba(255,255,255,0.08); }
+    .lineup-row:hover { background: rgba(255,255,255,.08); }
+    .order { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .78rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .home .order { background: linear-gradient(135deg,#5a9e20,#3d7a10); box-shadow: 0 2px 6px rgba(90,158,32,.4); }
+    .away .order { background: linear-gradient(135deg,#9e2020,#7a1010); box-shadow: 0 2px 6px rgba(158,32,32,.4); }
+    .position { width: 74px; text-align: center; font-size: .7rem; font-weight: 700; flex-shrink: 0; margin-left: 10px; }
+    .home .position { color: rgba(180,220,80,.9); }
+    .away .position { color: rgba(220,120,80,.9); }
+    .sep { color: rgba(255,255,255,.15); font-size: .7rem; margin: 0 4px; }
+    .player-name { flex: 1; font-size: .95rem; font-weight: 600; color: #fff; text-align: center; letter-spacing: .05em; }
 
-    .order {
-      width: 26px; height: 26px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: #fff;
-      flex-shrink: 0;
+    /* ===== スコアブック ===== */
+    .score-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .score-team-toggle { display: flex; gap: 6px; }
+    .stg-btn {
+      padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.04); color: rgba(255,255,255,.45);
+      font-size: .74rem; font-weight: 700; cursor: pointer; transition: all .2s;
     }
-    /* 自チーム：緑 / 相手：赤 */
-    .home .order  { background: linear-gradient(135deg, #5a9e20, #3d7a10); box-shadow: 0 2px 6px rgba(90,158,32,0.4); }
-    .away .order  { background: linear-gradient(135deg, #9e2020, #7a1010); box-shadow: 0 2px 6px rgba(158,32,32,0.4); }
+    .stg-btn.active-home { background: linear-gradient(135deg,#5a9e20,#3d7a10); border-color:transparent; color:#fff; }
+    .stg-btn.active-away { background: linear-gradient(135deg,#9e2020,#7a1010); border-color:transparent; color:#fff; }
+    .score-title { font-size: .78rem; color: rgba(255,255,255,.5); font-weight: 700; }
 
-    .position {
-      width: 74px;
-      text-align: center;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      flex-shrink: 0;
-      margin-left: 10px;
-    }
-    .home .position { color: rgba(180,220,80,0.9); }
-    .away .position { color: rgba(220,120,80,0.9); }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; min-width: 100%; font-size: .72rem; }
+    th, td { border: 1px solid rgba(255,255,255,.1); text-align: center; white-space: nowrap; }
+    thead th { background: rgba(255,255,255,.07); color: rgba(255,255,255,.6); font-weight: 700; padding: 5px 4px; }
+    thead th.inn { min-width: 46px; }
+    thead th.stat { background: rgba(255,200,50,.08); color: rgba(255,200,100,.8); min-width: 36px; }
+    tbody td { padding: 4px 3px; }
+    td.name-cell { text-align: left; padding: 4px 8px; color: #fff; font-size: .76rem; font-weight: 600; min-width: 90px; }
+    td.order-cell { font-weight: 800; color: rgba(255,255,255,.5); font-size: .7rem; width: 24px; }
+    td.stat-cell { background: rgba(255,200,50,.05); color: rgba(255,220,100,.9); font-weight: 700; }
+    td.avg-cell  { background: rgba(255,200,50,.05); color: rgba(255,220,100,.9); font-size: .7rem; }
+    td.inn-cell  { cursor: pointer; color: #fff; min-width: 46px; height: 28px; font-size: .72rem; transition: background .15s; }
+    td.inn-cell:hover { background: rgba(255,255,255,.1); }
+    td.inn-cell.filled-hit  { background: rgba(90,158,32,.25); color: #aee060; }
+    td.inn-cell.filled-out  { background: rgba(60,60,80,.4);   color: rgba(200,200,220,.8); }
+    td.inn-cell.filled-safe  { background: rgba(80,120,200,.25); color: #9ab8f0; }
+    td.inn-cell.filled-error { background: rgba(200,120,30,.25); color: #f0b870; }
+    td.inn-cell.filled-sacfly { background: rgba(140,80,200,.25); color: #c8a0f0; }
 
-    .sep {
-      color: rgba(255,255,255,0.15);
-      font-size: 0.7rem;
-      margin: 0 4px;
+    /* ===== モーダル ===== */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.7);
+      display: flex; align-items: center; justify-content: center; z-index: 100;
     }
+    .modal {
+      background: #0f1e0f; border: 1px solid rgba(255,255,255,.15);
+      border-radius: 14px; padding: 20px; width: 320px; max-width: 95vw;
+      box-shadow: 0 10px 40px rgba(0,0,0,.8);
+    }
+    .modal-title { font-size: .9rem; font-weight: 800; color: #fff; text-align: center; margin-bottom: 14px; }
+    .modal-step-label { font-size: .7rem; color: rgba(255,255,255,.4); margin-bottom: 8px; letter-spacing: .08em; text-transform: uppercase; }
 
-    .player-name {
-      flex: 1;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #fff;
-      text-align: center;
-      letter-spacing: 0.05em;
+    /* 結果ボタングリッド */
+    .result-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 12px; }
+    .result-grid .res-btn { font-size: .74rem; }
+    .res-btn {
+      padding: 8px 4px; border-radius: 7px; border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.05); color: #fff; font-size: .8rem; font-weight: 700;
+      cursor: pointer; transition: all .15s;
     }
+    .res-btn:hover { background: rgba(255,255,255,.12); }
+    .res-btn.hit  { border-color: rgba(90,158,32,.5); color: #aee060; }
+    .res-btn.safe { border-color: rgba(80,120,200,.5); color: #9ab8f0; }
+    .res-btn.out  { border-color: rgba(160,80,80,.5);  color: rgba(220,160,160,.9); }
+    .res-btn.selected { background: rgba(255,255,255,.2); outline: 2px solid rgba(255,255,255,.4); }
+
+    /* フィールド図 */
+    .field-diagram { margin-bottom: 12px; }
+    .field-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
+    .dir-btn {
+      padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.05); color: rgba(255,255,255,.8);
+      font-size: .78rem; font-weight: 700; cursor: pointer; transition: all .15s; min-width: 44px;
+    }
+    .dir-btn:hover { background: rgba(255,255,255,.12); }
+    .dir-btn.hidden { visibility: hidden; }
+    .dir-btn.selected { background: rgba(200,160,32,.4); border-color: rgba(200,160,32,.8); color: #ffe080; }
+
+    /* メモ */
+    .memo-row { margin-bottom: 10px; }
+    .memo-input {
+      width: 100%; padding: 7px 10px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+      border-radius: 7px; color: #fff; font-size: .82rem; outline: none;
+      transition: border-color .2s;
+    }
+    .memo-input::placeholder { color: rgba(255,255,255,.25); }
+    .memo-input:focus { border-color: rgba(180,220,80,.5); }
+
+    /* 打点入力 */
+    .rbi-row { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 14px; }
+    .rbi-label { font-size: .78rem; color: rgba(255,255,255,.5); }
+    .rbi-ctrl { display: flex; align-items: center; gap: 6px; }
+    .rbi-btn { width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.05); color:#fff; font-size:1rem; cursor:pointer; }
+    .rbi-val { font-size: .95rem; font-weight: 800; color: #fff; width: 24px; text-align: center; }
+
+    /* モーダルアクション */
+    .modal-actions { display: flex; gap: 8px; }
+    .btn-cancel  { flex:1; padding:8px; border-radius:8px; border:1px solid rgba(255,255,255,.15); background:transparent; color:rgba(255,255,255,.5); font-size:.82rem; cursor:pointer; }
+    .btn-confirm { flex:2; padding:8px; border-radius:8px; border:none; background:linear-gradient(135deg,#5a9e20,#3d7a10); color:#fff; font-size:.82rem; font-weight:700; cursor:pointer; }
+    .btn-confirm:disabled { opacity:.3; cursor:not-allowed; }
+    .btn-clear { flex:1; padding:8px; border-radius:8px; border:1px solid rgba(200,80,80,.4); background:rgba(200,80,80,.08); color:rgba(220,140,140,.9); font-size:.78rem; cursor:pointer; }
 
     /* フッター */
-    .footer {
-      margin-top: 12px;
-      text-align: center;
-    }
-    .btn-back {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 8px;
-      color: rgba(255,255,255,0.45);
-      font-size: 0.8rem;
-      padding: 7px 22px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-back:hover {
-      border-color: rgba(255,255,255,0.4);
-      color: rgba(255,255,255,0.8);
-    }
+    .footer { margin-top: 12px; text-align: center; }
+    .btn-back { background:transparent; border:1px solid rgba(255,255,255,.2); border-radius:8px; color:rgba(255,255,255,.45); font-size:.8rem; padding:7px 22px; cursor:pointer; transition:all .2s; }
+    .btn-back:hover { border-color:rgba(255,255,255,.4); color:rgba(255,255,255,.8); }
   </style>
 </head>
 <body>
-
   <div class="stadium-light left"></div>
   <div class="stadium-light right"></div>
 
@@ -198,11 +176,12 @@
     </div>
 
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('home', this)">🟢 我々チーム</button>
-      <button class="tab-btn"        onclick="switchTab('away', this)">🔴 対戦相手</button>
+      <button class="tab-btn active" onclick="switchTab('home',this)">🟢 我々チーム</button>
+      <button class="tab-btn"        onclick="switchTab('away',this)">🔴 対戦相手</button>
+      <button class="tab-btn"        onclick="switchTab('score',this)">📊 成績入力</button>
     </div>
 
-    <!-- 自チーム -->
+    <!-- 我々チーム -->
     <div id="panel-home" class="panel active home">
       <div class="lineup">
         <div class="lineup-row"><div class="order">1</div><div class="position">センター</div><span class="sep">|</span><div class="player-name">田中　翔</div></div>
@@ -232,18 +211,312 @@
       </div>
     </div>
 
+    <!-- 成績入力 -->
+    <div id="panel-score" class="panel">
+      <div class="score-header">
+        <span class="score-title">打者成績</span>
+        <div class="score-team-toggle">
+          <button class="stg-btn active-home" id="stg-home" onclick="switchScoreTeam('home')">🟢 我々</button>
+          <button class="stg-btn" id="stg-away" onclick="switchScoreTeam('away')">🔴 相手</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table id="score-table">
+          <thead>
+            <tr>
+              <th style="width:22px">#</th>
+              <th style="min-width:80px">選手</th>
+              <th class="inn">1回</th><th class="inn">2回</th><th class="inn">3回</th>
+              <th class="inn">4回</th><th class="inn">5回</th><th class="inn">6回</th>
+              <th class="inn">7回</th><th class="inn">8回</th><th class="inn">9回</th>
+              <th class="stat">打数</th><th class="stat">安打</th>
+              <th class="stat">打点</th><th class="stat" style="min-width:44px">打率</th>
+              <th class="stat" style="min-width:44px">出塁率</th>
+            </tr>
+          </thead>
+          <tbody id="score-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
     <div class="footer">
       <button class="btn-back" onclick="location.href='index.html'">← ログイン画面へ戻る</button>
     </div>
   </div>
 
+  <!-- ===== モーダル ===== -->
+  <div class="modal-overlay" id="modal" style="display:none" onclick="closeOnOverlay(event)">
+    <div class="modal">
+      <div class="modal-title" id="modal-title">打席入力</div>
+
+      <!-- Step1: 結果選択 -->
+      <div id="step1">
+        <div class="modal-step-label">① 結果を選択</div>
+        <div class="result-grid">
+          <button class="res-btn hit"  onclick="selectResult('安打')">安打</button>
+          <button class="res-btn hit"  onclick="selectResult('二塁打')">二塁打</button>
+          <button class="res-btn hit"  onclick="selectResult('三塁打')">三塁打</button>
+          <button class="res-btn hit"  onclick="selectResult('本塁打')">本塁打</button>
+          <button class="res-btn out"  onclick="selectResult('ゴロ')">ゴロ</button>
+          <button class="res-btn out"  onclick="selectResult('フライ')">フライ</button>
+          <button class="res-btn out"  onclick="selectResult('ライナー')">ライナー</button>
+          <button class="res-btn out"  onclick="selectResult('犠打')">犠打</button>
+          <button class="res-btn out"  onclick="selectResult('三振')">三振</button>
+          <button class="res-btn safe" onclick="selectResult('四球')">四球</button>
+          <button class="res-btn safe" onclick="selectResult('死球')">死球</button>
+          <button class="res-btn out"  onclick="selectResult('併殺打')">併殺打</button>
+          <button class="res-btn out"  onclick="selectResult('フライ併')">フライ併</button>
+          <button class="res-btn safe" onclick="selectResult('エラー')">エラー</button>
+          <button class="res-btn safe" onclick="selectResult('犠牲フライ')">犠飛</button>
+        </div>
+      </div>
+
+      <!-- Step2: 打球方向 -->
+      <div id="step2" style="display:none">
+        <div class="modal-step-label">② 打球方向を選択</div>
+        <div class="field-diagram">
+          <!-- 外野 -->
+          <div class="field-row">
+            <button class="dir-btn" id="d-左"  onclick="selectDir('左')">左</button>
+            <button class="dir-btn" id="d-中"  onclick="selectDir('中')">中</button>
+            <button class="dir-btn" id="d-右"  onclick="selectDir('右')">右</button>
+          </div>
+          <!-- 内野 -->
+          <div class="field-row">
+            <button class="dir-btn" id="d-三"  onclick="selectDir('三')">三</button>
+            <button class="dir-btn" id="d-遊"  onclick="selectDir('遊')">遊</button>
+            <button class="dir-btn" id="d-二"  onclick="selectDir('二')">二</button>
+            <button class="dir-btn" id="d-一"  onclick="selectDir('一')">一</button>
+          </div>
+          <!-- 投手・捕手 -->
+          <div class="field-row">
+            <button class="dir-btn hidden"></button>
+            <button class="dir-btn" id="d-投"  onclick="selectDir('投')">投</button>
+            <button class="dir-btn" id="d-捕"  onclick="selectDir('捕')">捕</button>
+            <button class="dir-btn hidden"></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- メモ -->
+      <div class="memo-row" id="memo-row" style="display:none">
+        <div class="modal-step-label">メモ（任意）</div>
+        <input type="text" id="memo-input" class="memo-input" placeholder="例: 併殺、走塁ミス など" maxlength="10">
+      </div>
+
+      <!-- 打点 -->
+      <div class="rbi-row" id="rbi-row" style="display:none">
+        <span class="rbi-label">打点</span>
+        <div class="rbi-ctrl">
+          <button class="rbi-btn" onclick="changeRBI(-1)">−</button>
+          <span class="rbi-val" id="rbi-val">0</span>
+          <button class="rbi-btn" onclick="changeRBI(1)">＋</button>
+        </div>
+      </div>
+
+      <!-- アクション -->
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">キャンセル</button>
+        <button class="btn-clear"  id="btn-clear" onclick="clearEntry()" style="display:none">クリア</button>
+        <button class="btn-confirm" id="btn-confirm" onclick="confirmEntry()" disabled>確定</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    function switchTab(team, btn) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('panel-' + team).classList.add('active');
+    // ===== データ =====
+    const players = {
+      home: ['田中 翔','鈴木 一郎','佐藤 大輝','山田 太郎','伊藤 健二','渡辺 蓮','中村 悠斗','小林 剛','松本 航'],
+      away: ['高橋 優斗','加藤 誠','西村 大和','木村 龍之介','林 駿介','清水 隼人','池田 颯太','石川 蒼','橋本 康平']
+    };
+    // scores[team][playerIdx][inning] = { display, atBat, hit, rbi, type }
+    const scores = {
+      home: Array.from({length:9}, ()=>Array(9).fill(null)),
+      away: Array.from({length:9}, ()=>Array(9).fill(null))
+    };
+
+    // 方向が必要な結果と使える方向
+    const dirMap = {
+      '安打':   ['左','中','右','投','一','二','三','遊','捕'],
+      '二塁打': ['左','中','右'],
+      '三塁打': ['左','中','右'],
+      '本塁打': ['左','中','右'],
+      'ゴロ':   ['左','中','右','投','一','二','三','遊','捕'],
+      'フライ':    ['左','中','右','投','一','二','三','遊','捕'],
+      'フライ併':  ['左','中','右','投','一','二','三','遊','捕'],
+      'エラー':    ['左','中','右','投','一','二','三','遊','捕'],
+      '犠牲フライ':['左','中','右','投','一','二','三','遊','捕'],
+      'ライナー':  ['左','中','右','投','一','二','三','遊','捕'],
+      '犠打':      ['投','一','二','三','遊','捕'],
+      '併殺打':    ['投','一','二','三','遊','捕'],
+    };
+    const noDir = new Set(['三振','四球','死球']);
+    const suffixMap = {
+      '安打':'安','二塁打':'二','三塁打':'三','本塁打':'本',
+      'ゴロ':'ゴロ','フライ':'飛','ライナー':'直','犠打':'犠','併殺打':'ゴロ併','フライ併':'飛併','エラー':'失','犠牲フライ':'犠飛'
+    };
+    const atBatSet = new Set(['安打','二塁打','三塁打','本塁打','ゴロ','フライ','ライナー','三振','併殺打','フライ併','エラー']);
+    const hitSet   = new Set(['安打','二塁打','三塁打','本塁打']);
+    const hitType  = new Set(['安打','二塁打','三塁打','本塁打']);
+    const safeType = new Set(['四球','死球']);
+
+    function getDisplay(result, dir) {
+      if (noDir.has(result)) return result;
+      if (!dir) return result;
+      return dir + suffixMap[result];
     }
+    function getCellClass(type) {
+      if (hitType.has(type))      return 'filled-hit';
+      if (type === 'エラー')      return 'filled-error';
+      if (type === '犠牲フライ')  return 'filled-sacfly';
+      if (safeType.has(type))     return 'filled-safe';
+      return 'filled-out';
+    }
+
+    // ===== タブ切替 =====
+    let currentMainTeam = 'home';
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-'+id).classList.add('active');
+      if (id==='score') renderTable();
+    }
+
+    // ===== スコアチーム切替 =====
+    let scoreTeam = 'home';
+    function switchScoreTeam(t) {
+      scoreTeam = t;
+      document.getElementById('stg-home').className = 'stg-btn' + (t==='home'?' active-home':'');
+      document.getElementById('stg-away').className = 'stg-btn' + (t==='away'?' active-away':'');
+      renderTable();
+    }
+
+    // ===== テーブル描画 =====
+    function renderTable() {
+      const tbody = document.getElementById('score-tbody');
+      tbody.innerHTML = '';
+      const t = scoreTeam;
+      players[t].forEach((name, pi) => {
+        const ab  = scores[t][pi].filter(s=>s&&atBatSet.has(s.type)).length;
+        const hit = scores[t][pi].filter(s=>s&&hitSet.has(s.type)).length;
+        const rbi = scores[t][pi].reduce((a,s)=>a+(s?s.rbi:0),0);
+        const bb  = scores[t][pi].filter(s=>s&&(s.type==='四球'||s.type==='死球')).length;
+        const avg = ab>0 ? (hit/ab).toFixed(3).replace(/^0/,'') : '---';
+        const obp = (ab+bb)>0 ? ((hit+bb)/(ab+bb)).toFixed(3).replace(/^0/,'') : '---';
+
+        let cells = '';
+        for (let inn=0; inn<9; inn++) {
+          const s = scores[t][pi][inn];
+          const cls = 'inn-cell' + (s?' '+getCellClass(s.type):'');
+          const txt = s ? s.display : '';
+          cells += `<td class="${cls}" onclick="openModal('${t}',${pi},${inn})">${txt}</td>`;
+        }
+
+        const tr = document.createElement('tr');
+        tr.innerHTML =
+          `<td class="order-cell">${pi+1}</td>` +
+          `<td class="name-cell">${name}</td>` +
+          cells +
+          `<td class="stat-cell">${ab}</td>` +
+          `<td class="stat-cell">${hit}</td>` +
+          `<td class="stat-cell">${rbi}</td>` +
+          `<td class="avg-cell">${avg}</td>` +
+          `<td class="avg-cell">${obp}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // ===== モーダル =====
+    let modal_team, modal_pi, modal_inn, modal_result=null, modal_dir=null, modal_rbi=0, modal_memo='';
+
+    function openModal(team, pi, inn) {
+      modal_team=team; modal_pi=pi; modal_inn=inn;
+      modal_result=null; modal_dir=null; modal_rbi=0; modal_memo='';
+
+      document.getElementById('memo-input').value = '';
+      document.getElementById('memo-row').style.display = 'none';
+      document.getElementById('modal-title').textContent =
+        `${players[team][pi]} — 第${inn+1}回`;
+      document.getElementById('step2').style.display='none';
+      document.getElementById('rbi-row').style.display='none';
+      document.getElementById('btn-confirm').disabled=true;
+      document.getElementById('rbi-val').textContent='0';
+
+      // 既存データがあればクリアボタン表示・メモ復元
+      const existing = scores[team][pi][inn];
+      document.getElementById('btn-clear').style.display = existing?'block':'none';
+      if (existing?.memo) {
+        document.getElementById('memo-input').value = existing.memo;
+      }
+
+      // ボタン選択状態リセット
+      document.querySelectorAll('.res-btn').forEach(b=>b.classList.remove('selected'));
+      document.querySelectorAll('.dir-btn').forEach(b=>b.classList.remove('selected'));
+
+      document.getElementById('modal').style.display='flex';
+    }
+
+    function closeModal() { document.getElementById('modal').style.display='none'; }
+    function closeOnOverlay(e) { if(e.target.id==='modal') closeModal(); }
+
+    function selectResult(res) {
+      modal_result=res; modal_dir=null;
+      document.querySelectorAll('.res-btn').forEach(b=>b.classList.remove('selected'));
+      event.target.classList.add('selected');
+      document.querySelectorAll('.dir-btn').forEach(b=>b.classList.remove('selected'));
+
+      document.getElementById('memo-row').style.display='block';
+      if (noDir.has(res)) {
+        document.getElementById('step2').style.display='none';
+        document.getElementById('rbi-row').style.display='flex';
+        document.getElementById('btn-confirm').disabled=false;
+      } else {
+        document.getElementById('step2').style.display='block';
+        document.getElementById('rbi-row').style.display='none';
+        document.getElementById('btn-confirm').disabled=true;
+        // 使える方向だけ表示
+        const allowed = new Set(dirMap[res]||[]);
+        ['左','中','右','三','遊','二','一','投','捕'].forEach(d=>{
+          const btn = document.getElementById('d-'+d);
+          if(btn) btn.style.display = allowed.has(d)?'':'none';
+        });
+      }
+    }
+
+    function selectDir(dir) {
+      modal_dir=dir;
+      document.querySelectorAll('.dir-btn').forEach(b=>b.classList.remove('selected'));
+      document.getElementById('d-'+dir).classList.add('selected');
+      document.getElementById('rbi-row').style.display='flex';
+      document.getElementById('btn-confirm').disabled=false;
+    }
+
+    function changeRBI(delta) {
+      modal_rbi = Math.max(0, modal_rbi+delta);
+      document.getElementById('rbi-val').textContent=modal_rbi;
+    }
+
+    function confirmEntry() {
+      const memo = document.getElementById('memo-input').value.trim();
+      const baseDisplay = getDisplay(modal_result, modal_dir);
+      const display = memo ? `${baseDisplay}(${memo})` : baseDisplay;
+      scores[modal_team][modal_pi][modal_inn] = {
+        display, type: modal_result, rbi: modal_rbi, memo,
+        atBat: atBatSet.has(modal_result), hit: hitSet.has(modal_result)
+      };
+      closeModal();
+      renderTable();
+    }
+
+    function clearEntry() {
+      scores[modal_team][modal_pi][modal_inn]=null;
+      closeModal();
+      renderTable();
+    }
+
+    // 初期描画
+    renderTable();
   </script>
 </body>
 </html>
